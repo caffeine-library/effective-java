@@ -1,7 +1,5 @@
 package org.caffein.library.efj.item1;
 
-import org.w3c.dom.Node;
-
 import java.util.*;
 
 /**
@@ -29,30 +27,31 @@ public class EnumSetBFS {
     }
 
     public static void main(String[] args) {
-        EnumSet<Node> visit = EnumSet.noneOf(Node.class);
-        for (Node u : Node.values()) {
-            bfs(u, visit);
-        }
+        for (Node u : Node.values())
+            bfs(u);
     }
 
-    private static void bfs(Node s, EnumSet<Node> visit) {
+    private static void bfs(Node s) {
+        EnumSet<Node> visit = EnumSet.noneOf(Node.class);
         LinkedList<Node> frontier = new LinkedList<>();
 
         frontier.add(s);
         visit.add(s);
 
+        int step = 0;
         while (frontier.size() > 0) {
             int sz = frontier.size();
             while (sz-- > 0) {
                 Node u = frontier.removeFirst();
-                System.out.println("Current: " + u);
-                for (Node v : u.adj) {
+                System.out.printf("Current(%s) %d steps from %s%n", u, step, s);
+                for (Node v : u.getAdj()) {
                     if (!visit.contains(v)) {
                         visit.add(v);
                         frontier.add(v);
                     }
                 }
             }
+            step++;
         }
     }
 }
