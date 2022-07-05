@@ -2,10 +2,7 @@ package org.caffein.library.efj.item1;
 
 import org.w3c.dom.Node;
 
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author : jbinchoo
@@ -22,7 +19,8 @@ public class EnumSetBFS {
         private List<Node> adj;
 
         Node(Node... adj) {
-            this.adj = Arrays.asList(adj);
+            this.adj = new ArrayList<>(Arrays.asList(adj));
+            for (Node v : adj) v.adj.add(this);
         }
 
         public List<Node> getAdj() {
