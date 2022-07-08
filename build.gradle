@@ -12,6 +12,8 @@ allprojects {
 
     ext {
         lombokVersion = '1.18.22'
+        jacksonVersion = '2.11.4'
+        awsSdkVersion = '1.11.914'
     }
 
     dependencies {
